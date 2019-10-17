@@ -8,8 +8,8 @@
 */
 
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { Images, Colors } from './App/Themes'
+import { StyleSheet, Text, View, SafeAreaView, FlatList, Dimensions, Platform, Image } from 'react-native';
+import { Metrics, Images, Colors } from './App/Themes'
 import APIRequest from './App/Config/APIRequest'
 
 import News from './App/Components/News'
@@ -47,15 +47,20 @@ export default class App extends React.Component {
 
     return (
       <SafeAreaView style={styles.container}>
-
-        <Text style={{textAlign: 'center'}}>Have fun! :) {"\n"} Start by changing the API Key in "./App/Config/AppConfig.js" {"\n"} Then, take a look at the following components: {"\n"} NavigationButtons {"\n"} Search {"\n"} News {"\n"} 🔥</Text>
-
         {/*First, you'll need a logo*/}
-
+        <View style={styles.header}>
+            <Image style={styles.logo} source={Images.logo}/>
+        </View>
+        <View style={styles.body}>
         {/*Then your search bar*/}
+          <View style={styles.search}>
+            <Search/>
+          </View>
 
         {/*And some news*/}
-
+          <View style={styles.news}>
+          </View>
+        </View>
         {/*Though, you can style and organize these however you want! power to you 😎*/}
 
         {/*If you want to return custom stuff from the NYT API, checkout the APIRequest file!*/}
@@ -71,5 +76,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  body: {
+    flex: 10
+  },
+  search: {
+    flex: 1
+  },
+  news: {
+    flex: 1
+  },
+  header: {
+    width: Metrics.screenWidth,
+    height: Metrics.navBarHeight,
+    margin: Metrics.marginHorizontal,
+    resizeMode: "contain"
+  },
+  logo: {
+    width: Metrics.screenWidth,
+    height: "100%",
+    resizeMode: "contain"
+  },
 });
