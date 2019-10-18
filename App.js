@@ -8,7 +8,8 @@
 */
 
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList, Dimensions, Platform, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList,
+  Dimensions, Platform, Image, ActivityIndicator } from 'react-native';
 import { Metrics, Images, Colors } from './App/Themes'
 import APIRequest from './App/Config/APIRequest'
 
@@ -49,6 +50,25 @@ export default class App extends React.Component {
     this.setState({loading: false, articles: resultArticles})
   }
 
+  getArticleContent = () => {
+    const {articles, loading} = this.state;
+
+    let contentDisplayed = null;
+
+    if (loading) {
+      contentDisplayed = <ActivityIndicator
+        size="large" color="black"/>
+    } else {
+      contentDisplayed = <News articles={articles}/>
+    }
+
+    return (
+      <View style={styles.body}>
+        {contentDisplayed}
+      </View>
+    )
+  }
+
   render() {
     const {articles, loading} = this.state;
 
@@ -66,9 +86,7 @@ export default class App extends React.Component {
         />
 
         {/*And some news*/}
-        <News
-          articles={this.state.articles}
-        />
+        {this.getArticleContent()}
         {/*Though, you can style and organize these however you want! power to you 😎*/}
         {/*If you want to return custom stuff from the NYT API, checkout the APIRequest file!*/}
 
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
   header: {
     width: Metrics.screenWidth,
     height: Metrics.navBarHeight,
-    margin: Metrics.marginHorizontal,
+    marginVertical: Metrics.marginHorizontal,
     resizeMode: "contain",
     justifyContent: 'center',
     alignItems: 'center'
@@ -95,4 +113,8 @@ const styles = StyleSheet.create({
     height: "100%",
     resizeMode: "contain",
   },
+  body: {
+    flex: 1,
+    justifyContent: 'space-around',
+  }
 });
