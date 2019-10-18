@@ -75,9 +75,7 @@ export default class App extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         {/*First, you'll need a logo*/}
-        <View style={styles.header}>
-            <Image style={styles.logo} source={Images.logo}/>
-        </View>
+        <Header/>
         {/*Then your search bar*/}
         <Search
           onChangeText={this.onChangeText}
@@ -93,6 +91,14 @@ export default class App extends React.Component {
       </SafeAreaView>
     );
   }
+}
+
+const Header = () => {
+  return (
+    <View style={styles.header}>
+        <Image style={styles.logo} source={Images.logo}/>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

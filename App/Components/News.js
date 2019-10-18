@@ -39,7 +39,7 @@ export default class News extends Component {
   }
 }
 
-function Article({ item }) {
+const Article = ({ item }) => {
   return (
     <TouchableOpacity onPress={() => {Linking.openURL(item.url)}}>
       <View style={styles.article}>
