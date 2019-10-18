@@ -9,7 +9,7 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //consider using this!
-import { StyleSheet, View, Button, TextInput, TouchableOpacity, Image} from 'react-native'
+import { StyleSheet, View, Button, TextInput, TouchableOpacity, Image, Keyboard} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import { Metrics, Colors, Images } from '../Themes'
 import { Icon } from 'react-native-elements'
@@ -19,19 +19,23 @@ export default class Search extends Component {
 
   render () {
     return (
-      <View style={styles.search}>
+      <View style={styles.container}>
         {/*Some styles with a fancy background and padding...*/}
         {/*user input and a search button!*/}
         <TextInput
           style={styles.textBar}
           placeholder={"Search for News"}
-          backgroundColor={Colors.cloud}
+          value={this.props.searchText}
+          onChangeText={(text) => this.props.onChangeText(text)}
+          onSubmitEditing={() => this.props.onSubmitText()}
         />
-        {/* <Icon
+        <Icon
           name="search"
           type="evilicon"
+          color={Colors.fire}
           style={styles.searchIcon}
-        /> */}
+          onPress={() => this.props.onSubmitText()}
+        />
       </View>
     );
   }
@@ -39,22 +43,19 @@ export default class Search extends Component {
 
 
 const styles = StyleSheet.create({
-  search: {
-    width: "100%",
+  container: {
     flexDirection: "row",
-    padding: Metrics.baseMargin,
-    position: "relative"
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: Colors.cloud,
+    marginHorizontal: Metrics.marginHorizontal,
   },
   textBar:{
-    width: "100%",
-    height: 40,
-    padding: Metrics.baseMargin,
-    borderRadius: 10
-  },
-  button: {
-    position: "absolute",
+    flex: 1,
+    padding: 10,
   },
   searchIcon: {
-    tintColor: "red"
+    position: "absolute",
   }
 });

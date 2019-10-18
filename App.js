@@ -24,10 +24,17 @@ export default class App extends React.Component {
     category: ''
   }
 
-  componentDidMount() {
+  onChangeText = text => {
+    this.setState({searchText: text});
+  }
+  onSubmitText = () => {
+    this.loadArticles(this.state.searchText);
+    this.setState({searchText: ""});
 
-    //uncomment this to run an API query!
-    //this.loadArticles();
+  }
+
+  componentDidMount() {
+    this.loadArticles();
   }
 
   async loadArticles(searchTerm = '', category = '') {
@@ -51,18 +58,18 @@ export default class App extends React.Component {
         <View style={styles.header}>
             <Image style={styles.logo} source={Images.logo}/>
         </View>
-        <View style={styles.body}>
         {/*Then your search bar*/}
-          <View style={styles.search}>
-            <Search/>
-          </View>
+        <Search
+          onChangeText={this.onChangeText}
+          onSubmitText={this.onSubmitText}
+          searchText = {this.state.searchText}
+        />
 
         {/*And some news*/}
-          <View style={styles.news}>
-          </View>
-        </View>
+        <News
+          articles={this.state.articles}
+        />
         {/*Though, you can style and organize these however you want! power to you 😎*/}
-
         {/*If you want to return custom stuff from the NYT API, checkout the APIRequest file!*/}
 
       </SafeAreaView>
@@ -74,27 +81,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  body: {
-    flex: 10
-  },
-  search: {
-    flex: 1
-  },
-  news: {
-    flex: 1
   },
   header: {
     width: Metrics.screenWidth,
     height: Metrics.navBarHeight,
     margin: Metrics.marginHorizontal,
-    resizeMode: "contain"
+    resizeMode: "contain",
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   logo: {
     width: Metrics.screenWidth,
     height: "100%",
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
 });
