@@ -9,7 +9,7 @@
 
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList,
-  Dimensions, Platform, Image, ActivityIndicator } from 'react-native';
+  Dimensions, Platform, Image, ActivityIndicator, Keyboard } from 'react-native';
 import { Metrics, Images, Colors } from './App/Themes'
 import APIRequest from './App/Config/APIRequest'
 
@@ -31,7 +31,7 @@ export default class App extends React.Component {
   onSubmitText = () => {
     this.loadArticles(this.state.searchText);
     this.setState({searchText: ""});
-
+    Keyboard.dismiss();
   }
 
   componentDidMount() {

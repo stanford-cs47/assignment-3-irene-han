@@ -9,7 +9,7 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //consider using this!
-import { StyleSheet, View, Button, TextInput, TouchableOpacity, Image, Keyboard} from 'react-native'
+import { StyleSheet, View, Button, TextInput, TouchableOpacity, Image} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import { Metrics, Colors, Images } from '../Themes'
 import { Icon } from 'react-native-elements'
