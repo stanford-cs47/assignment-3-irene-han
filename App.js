@@ -52,16 +52,13 @@ export default class App extends React.Component {
 
   getArticleContent = () => {
     const {articles, loading} = this.state;
-
     let contentDisplayed = null;
-
     if (loading) {
       contentDisplayed = <ActivityIndicator
         size="large" color="black"/>
     } else {
       contentDisplayed = <News articles={articles}/>
     }
-
     return (
       <View style={styles.body}>
         {contentDisplayed}
@@ -74,20 +71,13 @@ export default class App extends React.Component {
 
     return (
       <SafeAreaView style={styles.container}>
-        {/*First, you'll need a logo*/}
         <Header/>
-        {/*Then your search bar*/}
         <Search
           onChangeText={this.onChangeText}
           onSubmitText={this.onSubmitText}
           searchText = {this.state.searchText}
         />
-
-        {/*And some news*/}
         {this.getArticleContent()}
-        {/*Though, you can style and organize these however you want! power to you 😎*/}
-        {/*If you want to return custom stuff from the NYT API, checkout the APIRequest file!*/}
-
       </SafeAreaView>
     );
   }

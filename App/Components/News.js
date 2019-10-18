@@ -20,8 +20,6 @@ export default class News extends Component {
     articles: PropTypes.array
   }
 
-  //you can change the props above to whatever you want/need.
-
   render () {
     const {articles} = this.props;
 

@@ -20,7 +20,6 @@ export default class Search extends Component {
   render () {
     return (
       <View style={styles.container}>
-        {/*Some styles with a fancy background and padding...*/}
         {/*user input and a search button!*/}
         <TextInput
           style={styles.textBar}
